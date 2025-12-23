@@ -3,184 +3,250 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Frohe Weihnachten!</title>
+<title>Frohe Weihnachten Mama & Papa ❤️</title>
+
 <style>
-  body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #2a2a72, #6a1b9a);
-    font-family: 'Arial', sans-serif;
-    overflow: hidden;
-    flex-direction: column;
-    color: #fff;
-  }
+*{box-sizing:border-box}
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:radial-gradient(circle at top,#3b1d5a,#0b0013);
+  font-family:'Segoe UI',sans-serif;
+  overflow:hidden;
+  color:white;
+}
 
-  h1 {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 2em;
-    text-shadow: 2px 2px 6px #000;
-  }
+h1{
+  margin-bottom:30px;
+  text-align:center;
+  text-shadow:0 0 20px rgba(255,255,255,.4);
+}
 
-  .gift-wrapper {
-    perspective: 1000px;
-  }
+/* 🎁 GESCHENK */
+.gift{
+  position:relative;
+  width:240px;
+  height:240px;
+  cursor:pointer;
+  animation:float 3s ease-in-out infinite;
+}
 
-  .gift {
-    width: 180px;
-    height: 180px;
-    position: relative;
-    cursor: pointer;
-    transform-style: preserve-3d;
-    transition: transform 1s ease;
-  }
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
 
-  .lid, .box {
-    position: absolute;
-    width: 100%;
-    height: 50%;
-    border-radius: 15px;
-  }
+.box{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:170px;
+  background:linear-gradient(145deg,#d32f2f,#8e0000);
+  border-radius:20px;
+  box-shadow:0 25px 50px rgba(0,0,0,.6);
+}
 
-  .lid {
-    top: 0;
-    background: #c62828;
-    z-index: 2;
-    transform-origin: top center;
-    transition: transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-  }
+.lid{
+  position:absolute;
+  top:0;
+  width:100%;
+  height:80px;
+  background:linear-gradient(145deg,#ff5252,#b71c1c);
+  border-radius:20px 20px 10px 10px;
+  transform-origin:center bottom;
+  transition:transform .9s cubic-bezier(.17,.89,.32,1.49);
+  z-index:5;
+}
 
-  .box {
-    bottom: 0;
-    background: #d32f2f;
-    z-index: 1;
-  }
+.ribbon-v,.ribbon-h{
+  position:absolute;
+  background:gold;
+  box-shadow:0 0 15px rgba(255,215,0,.9);
+}
+.ribbon-v{
+  width:24px;
+  height:100%;
+  left:50%;
+  transform:translateX(-50%);
+}
+.ribbon-h{
+  height:24px;
+  width:100%;
+  top:45%;
+}
 
-  .ribbon-vertical, .ribbon-horizontal {
-    position: absolute;
-    background: gold;
-  }
+.bow{
+  position:absolute;
+  top:-30px;
+  left:50%;
+  transform:translateX(-50%);
+  width:70px;
+  height:35px;
+  background:gold;
+  border-radius:50%;
+  box-shadow:0 0 20px rgba(255,215,0,1);
+}
 
-  .ribbon-vertical {
-    width: 20px;
-    height: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+/* 💥 EXPLOSION */
+.open .lid{
+  transform:rotateX(-150deg) translateY(-150px);
+}
 
-  .ribbon-horizontal {
-    width: 100%;
-    height: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+/* 🎫 GUTSCHEIN */
+.card{
+  position:absolute;
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%) scale(0);
+  background:white;
+  color:#111;
+  padding:30px;
+  border-radius:20px;
+  width:320px;
+  text-align:center;
+  box-shadow:0 30px 60px rgba(0,0,0,.7);
+  transition:transform .9s ease .5s;
+  z-index:10;
+}
 
-  .gift.open .lid {
-    transform: rotateX(-180deg);
-  }
+.open .card{
+  transform:translateX(-50%) scale(1);
+}
 
-  .message {
-    position: absolute;
-    bottom: -150px;
-    background: white;
-    color: #222;
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
-    width: 300px;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 1s ease 0.5s;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  }
+.card h2{
+  margin-top:0;
+  color:#b71c1c;
+}
 
-  .gift.open .message {
-    opacity: 1;
-    transform: translateY(0);
+/* 📱 EXTRA HANDY-EFFEKT */
+@media(max-width:600px){
+  .open .card{
+    animation:phonePop .8s ease;
   }
+}
 
-  canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-  }
+@keyframes phonePop{
+  0%{transform:translateX(-50%) scale(.3) rotate(-10deg)}
+  100%{transform:translateX(-50%) scale(1) rotate(0)}
+}
+
+/* ❄️ SCHNEE */
+.snowflake{
+  position:fixed;
+  top:-10px;
+  color:white;
+  font-size:14px;
+  opacity:.8;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh)}
+}
+
+canvas{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
 </style>
 </head>
-<body>
-<h1>Ein Weihnachtsgeschenk für euch!</h1>
 
-<div class="gift-wrapper">
-  <div class="gift" id="gift">
-    <div class="lid"></div>
-    <div class="box"></div>
-    <div class="ribbon-vertical"></div>
-    <div class="ribbon-horizontal"></div>
-    <div class="message" id="message">
-      🎁 Frohe Weihnachten! 🎄<br>
-      Hier ist euer Gutschein: 50% Rabatt auf alles!<br>
-      Habt einen wundervollen Tag!
-    </div>
+<body>
+<h1>🎄 Klickt auf euer Geschenk 🎄</h1>
+
+<div class="gift" id="gift">
+  <div class="lid"></div>
+  <div class="bow"></div>
+  <div class="box"></div>
+  <div class="ribbon-v"></div>
+  <div class="ribbon-h"></div>
+
+  <div class="card">
+    <h2>❤️ Liebe Mama & lieber Papa ❤️</h2>
+    <p>
+      Danke für alles, was ihr jeden Tag für mich tut.  
+      Dieser Gutschein steht für gemeinsame Zeit,
+      Lachen und schöne Erinnerungen.
+      <br><br>
+      🎁 <strong>Gutschein:</strong><br>
+      Ein gemeinsamer Ausflug eurer Wahl
+      <br><br>
+      Frohe Weihnachten!  
+      <br>– Euer Kind ❤️
+    </p>
   </div>
 </div>
+
+<!-- 🔊 SOUNDS -->
+<audio id="boom" src="https://assets.mixkit.co/sfx/preview/mixkit-explosion-impact-1684.mp3"></audio>
+<audio id="bells" src="https://assets.mixkit.co/sfx/preview/mixkit-christmas-bells-681.mp3"></audio>
 
 <canvas id="confetti"></canvas>
 
 <script>
-  const gift = document.getElementById('gift');
-  const canvas = document.getElementById('confetti');
-  const ctx = canvas.getContext('2d');
-  let confettiParticles = [];
+/* 💥 KONFETTI */
+const canvas=document.getElementById("confetti");
+const ctx=canvas.getContext("2d");
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+let particles=[];
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  function createConfetti() {
-    const colors = ['#ff0', '#f00', '#0f0', '#0ff', '#f0f', '#fff', '#ff8c00', '#8a2be2'];
-    for(let i=0; i<200; i++){
-      confettiParticles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height - canvas.height,
-        r: Math.random() * 6 + 4,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        tilt: Math.random() * 10 - 10,
-        tiltAngleIncrement: Math.random() * 0.07 + 0.05,
-        tiltAngle: 0,
-        speed: Math.random() * 3 + 2
-      });
-    }
-  }
-
-  function drawConfetti() {
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    confettiParticles.forEach(p => {
-      ctx.beginPath();
-      ctx.lineWidth = p.r / 2;
-      ctx.strokeStyle = p.color;
-      ctx.moveTo(p.x + p.tilt + p.r/4, p.y);
-      ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r/4);
-      ctx.stroke();
-      p.tiltAngle += p.tiltAngleIncrement;
-      p.y += (Math.cos(p.tiltAngle) + 3 + p.speed)/2;
-      p.x += Math.sin(p.tiltAngle) * 2;
-      if(p.y > canvas.height) p.y = -10;
+function explode(){
+  for(let i=0;i<350;i++){
+    particles.push({
+      x:canvas.width/2,
+      y:canvas.height/2,
+      vx:(Math.random()-.5)*20,
+      vy:(Math.random()-1.2)*20,
+      size:Math.random()*6+4,
+      color:`hsl(${Math.random()*360},100%,60%)`
     });
-    requestAnimationFrame(drawConfetti);
   }
+}
 
-  gift.addEventListener('click', () => {
-    gift.classList.add('open');
-    createConfetti();
-    drawConfetti();
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    p.x+=p.vx;
+    p.y+=p.vy;
+    p.vy+=0.4;
+    ctx.fillStyle=p.color;
+    ctx.fillRect(p.x,p.y,p.size,p.size);
   });
+  requestAnimationFrame(animate);
+}
 
-  window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
+/* ❄️ SCHNEEFALL */
+function snow(){
+  const s=document.createElement("div");
+  s.className="snowflake";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDuration=3+Math.random()*5+"s";
+  s.innerHTML="❄";
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),8000);
+}
+setInterval(snow,200);
+
+/* 🎁 CLICK */
+const gift=document.getElementById("gift");
+gift.addEventListener("click",()=>{
+  gift.classList.add("open");
+  document.getElementById("boom").play();
+  setTimeout(()=>document.getElementById("bells").play(),300);
+  explode();
+  animate();
+});
+
+window.onresize=()=>{
+  canvas.width=innerWidth;
+  canvas.height=innerHeight;
+};
 </script>
 </body>
 </html>
